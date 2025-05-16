@@ -94,11 +94,12 @@ public class Main extends JFrame {
             @Override
             public void actionPerformed(java.awt.event.ActionEvent e) {
                 operator = "/";
-                if (textField.getText().contains(".")) {
-                    doubleNumber = Double.parseDouble(textField.getText());
-                }else{
-                    intNumber = Integer.parseInt(textField.getText());
-                }
+                // if (textField.getText().contains(".")) {
+                //     doubleNumber = Double.parseDouble(textField.getText());
+                // }else{
+                //     intNumber = Integer.parseInt(textField.getText());
+                // }
+                doubleNumber = Double.parseDouble(textField.getText());
                 textField.setText("");
             }
         });
@@ -287,7 +288,12 @@ public class Main extends JFrame {
                                 intNumber = 0;
                             }else if (operator.equals("x")) {
                                 result = intNumber * doubleNumber;
-                                textField.setText(String.valueOf(result));
+                                String []data = result.toString().split("\\.");
+                                if ("0".equals(data[1])) {
+                                    textField.setText(String.valueOf(data[0]));
+                                }else{
+                                    textField.setText(String.valueOf(result));
+                                }
                                 operator = null;
                                 doubleNumber = 0;
                                 intNumber = 0;
@@ -306,10 +312,10 @@ public class Main extends JFrame {
                             }
                         }else{
                             // int & int
-                            int secondInt = Integer.parseInt(textField.getText());
+                            Double secondInt = Double.parseDouble(textField.getText());
                             if (operator.equals("/")) {
-                                result = intNumber / secondInt;
-                                textField.setText(String.valueOf(result));
+                                result = (double)doubleNumber / secondInt;
+                                textField.setText(result.toString());
                                 operator = null;
                                 doubleNumber = 0;
                                 intNumber = 0;
@@ -337,29 +343,49 @@ public class Main extends JFrame {
                         // double
                         if (textField.getText().contains(".")){
                             // double & double
-                            Double secondDouble = Double.parseDouble(textField.getText());
+                            Double secondDouble = Double.valueOf(textField.getText());
                             if (operator.equals("/")) {
                                 result = doubleNumber / secondDouble;
-                                textField.setText(String.valueOf(result));
+                                String []data = result.toString().split("\\.");
+                                if ("0".equals(data[1])) {
+                                    textField.setText(String.valueOf(data[0]));
+                                }else{
+                                    textField.setText(String.valueOf(result));
+                                }
                                 operator = null;
                                 doubleNumber = 0;
                                 intNumber = 0;
                             }else if (operator.equals("x")) {
                                 result = doubleNumber * secondDouble;
-                                textField.setText(String.valueOf(result));
+                                String []data = result.toString().split("\\.");
+                                if ("0".equals(data[1])) {
+                                    textField.setText(String.valueOf(data[0]));
+                                }else{
+                                    textField.setText(String.valueOf(result));
+                                }
                                 operator = null;
                                 doubleNumber = 0;
                                 intNumber = 0;
                                 
                             }else if (operator.equals("-")) {
                                 result = doubleNumber - secondDouble;
-                                textField.setText(String.valueOf(result));
+                                String []data = result.toString().split("\\.");
+                                if ("0".equals(data[1])) {
+                                    textField.setText(String.valueOf(data[0]));
+                                }else{
+                                    textField.setText(String.valueOf(result));
+                                }
                                 operator = null;
                                 doubleNumber = 0;
                                 intNumber = 0;
                             }else if (operator.equals("+")) {
                                 result = doubleNumber + secondDouble;
-                                textField.setText(String.valueOf(result));
+                                String []data = result.toString().split("\\.");
+                                if ("0".equals(data[1])) {
+                                    textField.setText(String.valueOf(data[0]));
+                                }else{
+                                    textField.setText(String.valueOf(result));
+                                }
                                 operator = null;
                                 doubleNumber = 0;
                                 intNumber = 0;
@@ -375,7 +401,6 @@ public class Main extends JFrame {
                                 intNumber = 0;
                             }else if(operator.equals("x")){
                                 result = doubleNumber * secondInt;
-                                textField.setText(String.valueOf(result));
                                 String []data = result.toString().split("\\.");
                                 if ("0".equals(data[1])) {
                                     textField.setText(String.valueOf(data[0]));
